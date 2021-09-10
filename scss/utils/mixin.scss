@@ -1,0 +1,43 @@
+@mixin dropdownItems {
+  position: relative;
+  border-radius: 5px;
+  width: 170px;
+  height: 70px;
+  margin-right: 1.5rem;
+}
+
+@mixin dropdownButton {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-family: $font-lato;
+  width: 170px;
+  height: 70px;
+  cursor: pointer;
+}
+
+@mixin dropdownSearch {
+  display: none;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 700px;
+  padding-left: 20px;
+}
+
+@mixin dropdownInput {
+  border: none;
+  height: 70px;
+  color: white;
+  border-radius: 5px;
+  font-family: $font-lato;
+  width: 100%;
+}
+
+@mixin dropdownMenu {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  color: white;
+}

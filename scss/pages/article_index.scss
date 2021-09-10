@@ -1,0 +1,67 @@
+#recipesList {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+article {
+  width: 380px;
+  margin-top: 1.5rem;
+
+  & .visuel {
+    height: 178px;
+    background-color: $color-dark;
+    border-radius: 5px 5px 0 0;
+  }
+
+  & .info {
+    background-color: $color-light;
+    border-radius: 0 0 5px 5px;
+    height: 250px;
+
+    & .entete {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-family: $font-lato;
+
+      & h2 {
+        font-size: 1rem;
+        font-weight: normal;
+        flex: 1;
+        padding-left: 12px;
+      }
+
+      & .temps {
+        font-weight: bold;
+        height: 20px;
+        font-size: 1.2rem;
+        text-align: end;
+        padding-right: 12px;
+      }
+    }
+
+    & .corps {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      & ul {
+        width: 170px;
+        padding-left: 12px;
+        font-family: $font-lato;
+      }
+
+      & .description {
+        width: 170px;
+        height: 110px;
+        padding-right: 12px;
+        font-family: $font-roboto;
+      }
+    }
+  }
+}
+
+.gras {
+  font-weight: bold;
+}

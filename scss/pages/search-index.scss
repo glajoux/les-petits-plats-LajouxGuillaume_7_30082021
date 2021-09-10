@@ -1,0 +1,109 @@
+// *************Barre de recherche principale*****************
+.searchInput {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 1.125rem;
+  cursor: pointer;
+  background: $color-light;
+  border-radius: 5px;
+  margin-top: 20px;
+  &::after {
+    content: "";
+    background-image: url("../../images/search.svg");
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 1rem;
+  }
+  input {
+    background-color: transparent;
+    flex: 1;
+    height: 100%;
+    padding-left: 20px;
+    cursor: pointer;
+    border: none;
+    font-family: $font-lato;
+    color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+// ********** Recherche par thématiques *************
+
+.dropdown {
+  &__container {
+    display: flex;
+    position: relative;
+    border-radius: 5px;
+    margin-top: 2rem;
+  }
+}
+
+.ingredient {
+  background-color: $color-ingredients;
+  @include dropdownItems;
+  &__button {
+    @include dropdownButton;
+  }
+  &__search {
+    background-color: $color-ingredients;
+    @include dropdownSearch;
+    &__input {
+      background-color: $color-ingredients;
+      @include dropdownInput;
+    }
+    &__menu {
+      @include dropdownMenu;
+    }
+  }
+}
+
+.appareil {
+  background-color: $color-appliances;
+  @include dropdownItems;
+  &__button {
+    @include dropdownButton;
+  }
+  &__search {
+    background-color: $color-appliances;
+    @include dropdownSearch;
+    &__input {
+      background-color: $color-appliances;
+      @include dropdownInput;
+    }
+    &__menu {
+      @include dropdownMenu;
+    }
+  }
+}
+
+.ustensile {
+  background-color: $color-utils;
+  @include dropdownItems;
+
+  &__button {
+    @include dropdownButton;
+  }
+  &__search {
+    background-color: $color-utils;
+    @include dropdownSearch;
+
+    &__input {
+      background-color: $color-utils;
+      @include dropdownInput;
+    }
+    &__menu {
+      @include dropdownMenu;
+    }
+  }
+}
+
+.fleche {
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  rotate: 180deg;
+}
