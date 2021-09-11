@@ -13,38 +13,38 @@ const searchConstructor = function (dom, ingredients, appliances, utils) {
           <span class="tagSearch__result"></span>
         </div>
 
-        <div class="dropdow dropdown__container">
+        <div class="container">
 
-          <div class="dropdown__ingredient ingredient">
+          <div class="dropdown dropdown__ingredient ingredient">
             <div class="dropdown__button ingredient__button" role="button" aria-expand="false" id="dropdownMenuIngredient">
-              Ingrédients<img src="./images/felche.svg" alt="" />
+              Ingrédients<img src="./images/felche.svg" alt="" class="flecheOpen flecheIngredient"/>
             </div>
-            <div class="ingredient__search" aria-labelledby="dropdownMenuIngredient">
-              <input type="text" placeholder="Recherche un ingrédient" class="ingredient__search__input">
+            <div class="ingredient__search hidde boutons" aria-labelledby="dropdownMenuIngredient">
+              <input type="text" placeholder="Recherche un ingrédient" class="ingredient__search__input input">
               <img src="./images/felche.svg" alt="" class="fleche"/>
               <ul class="ingredient__search__menu">
                 ${ingredients
                   .map(
                     (ingredient) =>
-                      `<li class="ingredientItems">${ingredient}</li>`
+                      `<li class="ingredientItems li">${ingredient}</li>`
                   )
                   .join("")}
               </ul>
             </div>
           </div>
 
-          <div class="dropdown__appareil appareil">
+          <div class="dropdown dropdown__appareil appareil">
             <div class="dropdown__button appareil__button" role="button" aria-expand="false" id="dropdownMenuAppareil">
-              Appareil<img src="./images/felche.svg" alt="" />
+              Appareil<img src="./images/felche.svg" alt="" class="flecheOpen flecheAppareil"/>
             </div>
-            <div class="appareil__search" aria-labelledby="dropdownMenuAppareil">
-              <input type="text" placeholder="Recherche un appareil" class="appareil__search__input">
+            <div class="appareil__search hidde boutons" aria-labelledby="dropdownMenuAppareil">
+              <input type="text" placeholder="Recherche un appareil" class="appareil__search__input input">
               <img src="./images/felche.svg" alt="" class="fleche"/>
               <ul class="appareil__search__menu">
                   ${appliances
                     .map(
                       (appliance) =>
-                        `<li class="appareilItems">${appliance}</li>`
+                        `<li class="appareilItems li">${appliance}</li>`
                     )
                     .join("")}
                 
@@ -52,16 +52,16 @@ const searchConstructor = function (dom, ingredients, appliances, utils) {
             </div>
           </div>
 
-          <div class="dropdown__ustensile ustensile">
+          <div class="dropdown dropdown__ustensile ustensile">
             <div class="dropdown__button ustensile__button" role="button" aria-expand="false" id="dropdownMenuUstensile">
-              Ustensiles<img src="./images/felche.svg" alt="" />
+              Ustensiles<img src="./images/felche.svg" alt="" class="flecheOpen flecheUstensile"/>
             </div>
-            <div class="ustensile__search" aria-labelledby="dropdownMenuUstensile">
-              <input type="text" placeholder="Recherche un ustensile" class="ustensile__search__input">
+            <div class="ustensile__search hidde boutons" aria-labelledby="dropdownMenuUstensile">
+              <input type="text" placeholder="Recherche un ustensile" class="ustensile__search__input input">
               <img src="./images/felche.svg" alt="" class="fleche"/>
               <ul class="ustensile__search__menu">
               ${utils
-                .map((util) => `<li class="ustensileItems">${util}</li>`)
+                .map((util) => `<li class="ustensileItems li">${util}</li>`)
                 .join("")}
               </ul>
             </div>

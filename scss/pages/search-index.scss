@@ -33,13 +33,11 @@
 
 // ********** Recherche par thématiques *************
 
-.dropdown {
-  &__container {
-    display: flex;
-    position: relative;
-    border-radius: 5px;
-    margin-top: 2rem;
-  }
+.container {
+  display: flex;
+  position: relative;
+  border-radius: 5px;
+  margin-top: 2rem;
 }
 
 .ingredient {
@@ -106,4 +104,12 @@
   top: 28px;
   right: 20px;
   rotate: 180deg;
+}
+
+.hidde {
+  display: none;
+}
+
+.move {
+  transform: translateX(530px);
 }

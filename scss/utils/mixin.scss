@@ -18,13 +18,11 @@
 }
 
 @mixin dropdownSearch {
-  display: none;
   border-radius: 5px;
   position: absolute;
   top: 0;
   left: 0;
   width: 700px;
-  padding-left: 20px;
 }
 
 @mixin dropdownInput {
@@ -34,10 +32,12 @@
   border-radius: 5px;
   font-family: $font-lato;
   width: 100%;
+  padding-left: 20px;
 }
 
 @mixin dropdownMenu {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   color: white;
+  padding-left: 20px;
 }

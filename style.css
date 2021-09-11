@@ -56,7 +56,7 @@ header {
   color: rgba(0, 0, 0, 0.75);
 }
 
-.dropdown__container {
+.container {
   display: flex;
   position: relative;
   border-radius: 5px;
@@ -83,13 +83,11 @@ header {
 }
 .ingredient__search {
   background-color: #3282f7;
-  display: none;
   border-radius: 5px;
   position: absolute;
   top: 0;
   left: 0;
   width: 700px;
-  padding-left: 20px;
 }
 .ingredient__search__input {
   background-color: #3282f7;
@@ -99,11 +97,13 @@ header {
   border-radius: 5px;
   font-family: "Lato";
   width: 100%;
+  padding-left: 20px;
 }
 .ingredient__search__menu {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   color: white;
+  padding-left: 20px;
 }
 
 .appareil {
@@ -126,13 +126,11 @@ header {
 }
 .appareil__search {
   background-color: #68d9a4;
-  display: none;
   border-radius: 5px;
   position: absolute;
   top: 0;
   left: 0;
   width: 700px;
-  padding-left: 20px;
 }
 .appareil__search__input {
   background-color: #68d9a4;
@@ -142,11 +140,13 @@ header {
   border-radius: 5px;
   font-family: "Lato";
   width: 100%;
+  padding-left: 20px;
 }
 .appareil__search__menu {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   color: white;
+  padding-left: 20px;
 }
 
 .ustensile {
@@ -169,13 +169,11 @@ header {
 }
 .ustensile__search {
   background-color: #ed6454;
-  display: none;
   border-radius: 5px;
   position: absolute;
   top: 0;
   left: 0;
   width: 700px;
-  padding-left: 20px;
 }
 .ustensile__search__input {
   background-color: #ed6454;
@@ -185,11 +183,13 @@ header {
   border-radius: 5px;
   font-family: "Lato";
   width: 100%;
+  padding-left: 20px;
 }
 .ustensile__search__menu {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   color: white;
+  padding-left: 20px;
 }
 
 .fleche {
@@ -197,6 +197,14 @@ header {
   top: 28px;
   right: 20px;
   rotate: 180deg;
+}
+
+.hidde {
+  display: none;
+}
+
+.move {
+  transform: translateX(530px);
 }
 
 #recipesList {
