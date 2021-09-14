@@ -99,6 +99,18 @@
   }
 }
 
+.ingredientItems {
+  @include dropdownLi;
+}
+
+.appareilItems {
+  @include dropdownLi;
+}
+
+.ustensileItems {
+  @include dropdownLi;
+}
+
 .fleche {
   position: absolute;
   top: 28px;
@@ -112,4 +124,26 @@
 
 .move {
   transform: translateX(530px);
+}
+
+.tagSearch {
+  font-family: $font-lato;
+  font-weight: 700;
+  margin-top: 15px;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &__ingredient {
+    background-color: $color-ingredients;
+    @include tag;
+  }
+  &__appareil {
+    background-color: $color-appliances;
+    @include tag;
+  }
+  &__ustensile {
+    background-color: $color-utils;
+    @include tag;
+  }
 }

@@ -31,6 +31,7 @@
   color: white;
   border-radius: 5px;
   font-family: $font-lato;
+  font-size: 1.2rem;
   width: 100%;
   padding-left: 20px;
 }
@@ -40,4 +41,32 @@
   grid-template-columns: 33% 33% 33%;
   color: white;
   padding-left: 20px;
+  font-family: $font-lato;
+  font-size: 1.1rem;
+  max-height: 400px;
+  overflow: auto;
+}
+
+@mixin dropdownLi {
+  padding-bottom: 10px;
+}
+
+@mixin tag {
+  border-radius: 5px;
+  display: inline-block;
+  height: 37px;
+  padding: 10px 35px 0 20px;
+  margin-right: 20px;
+  &::after {
+    content: "";
+    background: url(../../images/delete.svg) no-repeat center;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  &__hidde {
+    display: none;
+  }
 }
