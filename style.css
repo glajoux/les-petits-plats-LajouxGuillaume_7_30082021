@@ -244,14 +244,17 @@ header {
   align-items: center;
 }
 .tagSearch__ingredient {
-  background-color: #3282f7;
+  display: flex;
+}
+.tagSearch__ingredient__position {
   border-radius: 5px;
   display: inline-block;
   height: 37px;
   padding: 10px 35px 0 20px;
   margin-right: 20px;
+  background-color: #3282f7;
 }
-.tagSearch__ingredient::after {
+.tagSearch__ingredient__position::after {
   content: "";
   background: url(../../images/delete.svg) no-repeat center;
   position: absolute;
@@ -260,10 +263,13 @@ header {
   padding-left: 10px;
   cursor: pointer;
 }
-.tagSearch__ingredient__hidde {
+.tagSearch__ingredient__position__hidde {
   display: none;
 }
 .tagSearch__appareil {
+  display: flex;
+}
+.tagSearch__appareil__position {
   background-color: #68d9a4;
   border-radius: 5px;
   display: inline-block;
@@ -271,7 +277,7 @@ header {
   padding: 10px 35px 0 20px;
   margin-right: 20px;
 }
-.tagSearch__appareil::after {
+.tagSearch__appareil__position::after {
   content: "";
   background: url(../../images/delete.svg) no-repeat center;
   position: absolute;
@@ -280,10 +286,13 @@ header {
   padding-left: 10px;
   cursor: pointer;
 }
-.tagSearch__appareil__hidde {
+.tagSearch__appareil__position__hidde {
   display: none;
 }
 .tagSearch__ustensile {
+  display: flex;
+}
+.tagSearch__ustensile__position {
   background-color: #ed6454;
   border-radius: 5px;
   display: inline-block;
@@ -291,7 +300,7 @@ header {
   padding: 10px 35px 0 20px;
   margin-right: 20px;
 }
-.tagSearch__ustensile::after {
+.tagSearch__ustensile__position::after {
   content: "";
   background: url(../../images/delete.svg) no-repeat center;
   position: absolute;
@@ -300,7 +309,19 @@ header {
   padding-left: 10px;
   cursor: pointer;
 }
-.tagSearch__ustensile__hidde {
+.tagSearch__ustensile__position__hidde {
+  display: none;
+}
+
+.searchError {
+  color: #ed6454;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: auto;
+  margin-top: 1.5rem;
+}
+
+.disparait {
   display: none;
 }
 

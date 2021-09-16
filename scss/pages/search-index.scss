@@ -135,15 +135,36 @@
   display: flex;
   align-items: center;
   &__ingredient {
-    background-color: $color-ingredients;
-    @include tag;
+    display: flex;
+    &__position {
+      @include tag;
+      background-color: $color-ingredients;
+    }
   }
   &__appareil {
-    background-color: $color-appliances;
-    @include tag;
+    display: flex;
+    &__position {
+      background-color: $color-appliances;
+      @include tag;
+    }
   }
   &__ustensile {
-    background-color: $color-utils;
-    @include tag;
+    display: flex;
+    &__position {
+      background-color: $color-utils;
+      @include tag;
+    }
   }
+}
+
+.searchError {
+  color: $color-utils;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: auto;
+  margin-top: 1.5rem;
+}
+
+.disparait {
+  display: none;
 }
