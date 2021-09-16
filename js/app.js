@@ -147,14 +147,12 @@ function liCreatorMainSearch(
       `;
   domAppareil.innerHTML = `
         ${appareils
-          .map((appareil) => `<li class="ingredientItems li">${appareil}</li>`)
+          .map((appareil) => `<li class="appareilItems li">${appareil}</li>`)
           .join("")}
       `;
   domUstensile.innerHTML = `
         ${ustensiles
-          .map(
-            (ustensile) => `<li class="ingredientItems li">${ustensile}</li>`
-          )
+          .map((ustensile) => `<li class="ustensileItems li">${ustensile}</li>`)
           .join("")}
       `;
 }
@@ -187,6 +185,7 @@ SEARCHINPUT.addEventListener("keyup", function (e) {
         appliancesTrie,
         ustensilesTrie
       );
+      positionTag();
     });
   } else {
     ARTICLE.innerHTML = "";
@@ -202,6 +201,7 @@ SEARCHINPUT.addEventListener("keyup", function (e) {
         appliancesTrie,
         ustensilesTrie
       );
+      positionTag();
     });
   }
 
