@@ -86,6 +86,12 @@ getAllIngredient(recipes);
 getAllAppliances(recipes);
 getAllUstensile(recipes);
 
+function getAllItems(recipes) {
+  getAllIngredient(recipes);
+  getAllAppliances(recipes);
+  getAllUstensile(recipes);
+}
+
 // class Dropdown {
 //   static initialisation() {
 //     // Récupère les inputs des dropdown
@@ -107,11 +113,4 @@ getAllUstensile(recipes);
 //   liMaker() {}
 // }
 
-export {
-  ingredientsTrie,
-  appliancesTrie,
-  ustensilesTrie,
-  getAllIngredient,
-  getAllAppliances,
-  getAllUstensile,
-};
+export { ingredientsTrie, appliancesTrie, ustensilesTrie, getAllItems };

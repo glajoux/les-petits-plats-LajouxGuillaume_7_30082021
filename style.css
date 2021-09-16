@@ -263,9 +263,6 @@ header {
   padding-left: 10px;
   cursor: pointer;
 }
-.tagSearch__ingredient__position__hidde {
-  display: none;
-}
 .tagSearch__appareil {
   display: flex;
 }
@@ -286,9 +283,6 @@ header {
   padding-left: 10px;
   cursor: pointer;
 }
-.tagSearch__appareil__position__hidde {
-  display: none;
-}
 .tagSearch__ustensile {
   display: flex;
 }
@@ -308,9 +302,6 @@ header {
   width: 20px;
   padding-left: 10px;
   cursor: pointer;
-}
-.tagSearch__ustensile__position__hidde {
-  display: none;
 }
 
 .searchError {

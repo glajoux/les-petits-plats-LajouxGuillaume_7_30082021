@@ -3,9 +3,7 @@ import {
   ingredientsTrie,
   appliancesTrie,
   ustensilesTrie,
-  getAllIngredient,
-  getAllAppliances,
-  getAllUstensile,
+  getAllItems,
 } from "./dropdown.js";
 import { searchConstructor, CreateArticle } from "./pageCreation.js";
 
@@ -39,8 +37,6 @@ const TAGS = [TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE];
 let ulIngredient = document.querySelector(".ingredient__search__menu");
 let ulAppareil = document.querySelector(".appareil__search__menu");
 let ulUstensile = document.querySelector(".ustensile__search__menu");
-
-console.log(ulAppareil, ulUstensile);
 
 const SEARCHINPUT = document.getElementById("searchInput");
 let INPUTSDROPDOWN = document.querySelectorAll(".input");
@@ -133,6 +129,36 @@ function search(list, recherche) {
 //   return newResults;
 // }
 
+//Fonction qui fait les li lors de la recherche principale
+function liCreatorMainSearch(
+  domIngredient,
+  domAppareil,
+  domUstensile,
+  ingredients,
+  appareils,
+  ustensiles
+) {
+  domIngredient.innerHTML = `
+        ${ingredients
+          .map(
+            (ingredient) => `<li class="ingredientItems li">${ingredient}</li>`
+          )
+          .join("")}
+      `;
+  domAppareil.innerHTML = `
+        ${appareils
+          .map((appareil) => `<li class="ingredientItems li">${appareil}</li>`)
+          .join("")}
+      `;
+  domUstensile.innerHTML = `
+        ${ustensiles
+          .map(
+            (ustensile) => `<li class="ingredientItems li">${ustensile}</li>`
+          )
+          .join("")}
+      `;
+}
+
 // Permet de faire la recherche dans l'onglet de recherche principal
 SEARCHINPUT.addEventListener("keyup", function (e) {
   let newRecipes = recipes;
@@ -149,25 +175,33 @@ SEARCHINPUT.addEventListener("keyup", function (e) {
       <span class="searchError">Aucune recette ne correspond à votre critère... Vous pouvez chercher « tarte aux pommes », « poisson », etc.</span>
       `;
     }
-    // getAllIngredient(result);
-    // getAllAppliances(result);
-    // getAllUstensile(result);
-    // console.log(ingredientsTrie);
-    // searchConstructor(
-    //   CONTAINERSEARCH,
-    //   ingredientsTrie,
-    //   appliancesTrie,
-    //   ustensilesTrie
-    // );
     result.forEach((recipe) => {
       let article = new CreateArticle(recipe);
       article.articleConstructor(ARTICLE);
+      getAllItems(result);
+      liCreatorMainSearch(
+        ulIngredient,
+        ulAppareil,
+        ulUstensile,
+        ingredientsTrie,
+        appliancesTrie,
+        ustensilesTrie
+      );
     });
   } else {
     ARTICLE.innerHTML = "";
     recipes.forEach((recipe) => {
       let article = new CreateArticle(recipe);
       article.articleConstructor(ARTICLE);
+      getAllItems(result);
+      liCreatorMainSearch(
+        ulIngredient,
+        ulAppareil,
+        ulUstensile,
+        ingredientsTrie,
+        appliancesTrie,
+        ustensilesTrie
+      );
     });
   }
 
@@ -221,6 +255,7 @@ INPUTSDROPDOWN.forEach((input) => {
   });
 });
 
+// Fonction qui fait les li lors d'une recherche dans les différents items
 function liMaker(cible, dom, listes) {
   if (cible.classList.contains("ingredient__search__input")) {
     dom.innerHTML = `
@@ -245,48 +280,8 @@ function liMaker(cible, dom, listes) {
   }
 }
 
-const LIITEMS = document.querySelectorAll(".li");
-
 // permet de disposer les tags de recherche en cliquant dessus
-// LIITEMS.forEach((liItem) => {
-//   liItem.addEventListener("click", function (e) {
-//     console.log(e.target);
-//     if (e.target.classList.contains("ingredientItems")) {
-//       TAGINGREDIENT.innerHTML += `
-//       <span class="tagSearch__ingredient__position">${e.target.textContent}</span>
-//       `;
-//       TAGINGREDIENT.classList.remove("tagSearch__ingredient__position__hidde");
-//     } else if (e.target.classList.contains("appareilItems")) {
-//       TAGAPPAREIL.innerHTML = `
-//       ${e.target.textContent}
-//       `;
-//       TAGAPPAREIL.classList.remove("tagSearch__appareil__hidde");
-//     } else {
-//       TAGUSTENSILE.innerHTML = `
-//       ${e.target.textContent}
-//       `;
-//       TAGUSTENSILE.classList.remove("tagSearch__ustensile__hidde");
-//     }
-//   });
-// });
-
-// let tags = document.querySelectorAll(".tagSearch__ingredient__position");
-// console.log(tags);
-
-// // Permet de fermer les tags en cliquant dessus
-// TAGS.forEach((tag) => {
-//   tag.addEventListener("click", function (e) {
-//     if (e.target.classList.contains("tagSearch__ingredient__position")) {
-//       tag.classList.add("tagSearch__ingredient__position__hidde");
-//     } else if (e.target.classList.contains("tagSearch__appareil")) {
-//       tag.classList.add("tagSearch__appareil__hidde");
-//     } else {
-//       tag.classList.add("tagSearch__ustensile__hidde");
-//     }
-//   });
-// });
-
-async function positionTag() {
+function positionTag() {
   let lis = document.querySelectorAll(".li");
   lis.forEach((li) => {
     li.addEventListener("click", function (e) {
@@ -310,9 +305,9 @@ async function positionTag() {
       }
     });
   });
-  console.log(closeTag());
 }
 
+// Permet de fermer les tags en cliquant dessus
 function closeTag() {
   let spanTags = document.querySelectorAll(".tagSearch span");
   spanTags.forEach((spanTag) => {
