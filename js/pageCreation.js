@@ -11,8 +11,8 @@ const searchConstructor = function (dom, ingredients, appliances, utils) {
         </div>
         <div id="tagSearch" class="tagSearch">
           <div class="tagSearch__ingredient"></div>
-          <div class="tagSearch__appareil tagSearch__appareil__hidde"></div>
-          <div class="tagSearch__ustensile tagSearch__ustensile__hidde"></div>
+          <div class="tagSearch__appareil"></div>
+          <div class="tagSearch__ustensile"></div>
         </div>
 
         <div class="container">

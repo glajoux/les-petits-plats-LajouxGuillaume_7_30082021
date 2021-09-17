@@ -42,6 +42,8 @@ const SEARCHINPUT = document.getElementById("searchInput");
 let INPUTSDROPDOWN = document.querySelectorAll(".input");
 const CONTAINERSEARCH = document.querySelector(".container");
 
+let arrayTags = [];
+
 // constante qui permet d'ouvrir les menus déroulant
 const openList = function () {
   document.addEventListener("click", function (e) {
@@ -243,14 +245,17 @@ INPUTSDROPDOWN.forEach((input) => {
     if (e.target.classList.contains("ingredient__search__input")) {
       searchItem(ingredientsSorting, e.target.value.toLowerCase());
       liMaker(e.target, ulIngredient, ingredientsSorting);
+      positionTag();
     }
     if (e.target.classList.contains("appareil__search__input")) {
       searchItem(appliancesSorting, e.target.value.toLowerCase());
       liMaker(e.target, ulAppareil, appliancesSorting);
+      positionTag();
     }
     if (e.target.classList.contains("ustensile__search__input")) {
       searchItem(ustensilesSorting, e.target.value.toLowerCase());
       liMaker(e.target, ulUstensile, ustensilesSorting);
+      positionTag();
     }
   });
 });
@@ -285,22 +290,27 @@ function positionTag() {
   let lis = document.querySelectorAll(".li");
   lis.forEach((li) => {
     li.addEventListener("click", function (e) {
+      arrayTags.push(e.target.textContent);
+      console.log(arrayTags);
       if (e.target.classList.contains("ingredientItems")) {
         TAGINGREDIENT.innerHTML += `
         <span class="tagSearch__ingredient__position">${e.target.textContent}</span>
         `;
+        tagsRecipesSorting(e.target);
         closeTag();
       }
       if (e.target.classList.contains("appareilItems")) {
         TAGAPPAREIL.innerHTML += `
         <span class="tagSearch__appareil__position">${e.target.textContent}</span>
         `;
+        tagsRecipesSorting(e.target);
         closeTag();
       }
       if (e.target.classList.contains("ustensileItems")) {
         TAGUSTENSILE.innerHTML += `
         <span class="tagSearch__ustensile__position">${e.target.textContent}</span>
         `;
+        tagsRecipesSorting(e.target);
         closeTag();
       }
     });
@@ -310,11 +320,70 @@ function positionTag() {
 // Permet de fermer les tags en cliquant dessus
 function closeTag() {
   let spanTags = document.querySelectorAll(".tagSearch span");
+  let filtreArrayTags = arrayTags;
+  console.log(filtreArrayTags);
   spanTags.forEach((spanTag) => {
     spanTag.addEventListener("click", function (e) {
-      e.target.classList.add("disparait");
+      console.log(e.target);
+      if (e.target.classList.contains("tagSearch__ingredient__position")) {
+        document.querySelector(".tagSearch__ingredient").removeChild(e.target);
+      } else if (e.target.classList.contains("tagSearch__appareil__position")) {
+        document.querySelector(".tagSearch__appareil").removeChild(e.target);
+      } else if (
+        e.target.classList.contains("tagSearch__ustensile__position")
+      ) {
+        document.querySelector(".tagSearch__ustensile").removeChild(e.target);
+      } else {
+      }
+      tagSearchSorting(filtreArrayTags, e.target.textContent);
+      let filtreArrayString = filtreArrayTags.toString();
+      console.log(filtreArrayString);
+      let result = search(recipes, filtreArrayString);
+      ARTICLE.innerHTML = "";
+      result.forEach((recipe) => {
+        let article = new CreateArticle(recipe);
+        article.articleConstructor(ARTICLE);
+        getAllItems(result);
+        liCreatorMainSearch(
+          ulIngredient,
+          ulAppareil,
+          ulUstensile,
+          ingredientsTrie,
+          appliancesTrie,
+          ustensilesTrie
+        );
+        positionTag();
+      });
     });
   });
 }
 
 positionTag();
+
+function tagsRecipesSorting(elementClicked) {
+  let result = search(recipes, elementClicked.textContent.toLowerCase());
+  console.log(result);
+  ARTICLE.innerHTML = "";
+  result.forEach((recipe) => {
+    let article = new CreateArticle(recipe);
+    article.articleConstructor(ARTICLE);
+    getAllItems(result);
+    liCreatorMainSearch(
+      ulIngredient,
+      ulAppareil,
+      ulUstensile,
+      ingredientsTrie,
+      appliancesTrie,
+      ustensilesTrie
+    );
+    positionTag();
+  });
+}
+
+function tagSearchSorting(tableau, recherche) {
+  for (let i = 0; i < tableau.length; i++) {
+    if (tableau[i] == recherche) {
+      tableau.splice(i, 1);
+    }
+  }
+}
