@@ -24,6 +24,10 @@ header {
   margin-top: 20px;
 }
 
+header .img {
+  text-align: center;
+}
+
 .searchInput {
   width: 100%;
   height: 70px;
@@ -310,10 +314,6 @@ header {
   font-size: 1.5rem;
   margin: auto;
   margin-top: 1.5rem;
-}
-
-.disparait {
-  display: none;
 }
 
 #recipesList {
