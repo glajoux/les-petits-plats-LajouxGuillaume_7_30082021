@@ -4,11 +4,27 @@ import {
   appliancesTrie,
   ustensilesTrie,
   getAllItems,
+  ingredientsTrieLowerCase,
 } from "./dropdown.js";
 import { searchConstructor, CreateArticle } from "./pageCreation.js";
 
 const SECTION = document.getElementById("searchSection");
 const ARTICLE = document.getElementById("recipesList");
+const description = [];
+const name = [];
+recipes.forEach((recipe) => {
+  description.push(recipe.description.toLowerCase());
+  name.push(recipe.name.toLowerCase());
+});
+
+let newObjectRecipes = [
+  { description: description },
+  { name: name },
+  { ustensils: ustensilesTrie },
+  { appliance: appliancesTrie },
+  { ingredients: ingredientsTrie },
+];
+console.log(newObjectRecipes);
 
 // Création de la partie recherche grâce à l'appel de la fonction searchConstructor
 searchConstructor(SECTION, ingredientsTrie, appliancesTrie, ustensilesTrie);
@@ -23,7 +39,7 @@ const APPAREIL = document.querySelector(".appareil");
 const USTENSILE = document.querySelector(".ustensile");
 const BUTTONS = document.querySelectorAll(".dropdown");
 
-// Récupère les menus cachés dérrière les bouonts des différents items
+// Récupère les menus cachés dérrière les boutonts des différents items
 const DROPDOWNINGREDIENTS = document.querySelector(".ingredient__search");
 const DROPDOWNAPPAREILS = document.querySelector(".appareil__search");
 const DROPDOWNUSTENSILES = document.querySelector(".ustensile__search");
@@ -107,7 +123,7 @@ openList();
 function search(list, recherche) {
   return list.filter(
     (element) =>
-      element.description.includes(recherche) ||
+      element.description.toLowerCase().includes(recherche) ||
       element.name.toLowerCase().includes(recherche) ||
       element.ustensils.includes(recherche) ||
       element.appliance.toLowerCase().includes(recherche)
@@ -162,7 +178,9 @@ function liCreatorMainSearch(
 // Permet de faire la recherche dans l'onglet de recherche principal
 SEARCHINPUT.addEventListener("keyup", function (e) {
   let newRecipes = recipes;
+  console.log(newRecipes);
   let recipeSearch = e.target.value.toLowerCase();
+  console.log(recipeSearch);
   let result = search(newRecipes, recipeSearch);
   // variable pour le second algo
   // let secondResult = secondSearch(recipes, recipeSearch);
@@ -336,7 +354,7 @@ function closeTag() {
       } else {
       }
       tagSearchSorting(filtreArrayTags, e.target.textContent);
-      let filtreArrayString = filtreArrayTags.toString();
+      let filtreArrayString = filtreArrayTags.toString().toLowerCase();
       console.log(filtreArrayString);
       let result = search(recipes, filtreArrayString);
       ARTICLE.innerHTML = "";
@@ -386,4 +404,8 @@ function tagSearchSorting(tableau, recherche) {
       tableau.splice(i, 1);
     }
   }
+}
+
+function removeAccent(string) {
+  string.replace(/[éèêë]/g, "e").replace(/[àäâ]/g, "a");
 }
