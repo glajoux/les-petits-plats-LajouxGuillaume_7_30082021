@@ -1,84 +1,64 @@
-import { recipes } from "./data/recipes.js";
+// constante qui permet d'ouvrir les menus déroulant
+const openList = function (
+  dropIngredient,
+  dropAppareil,
+  dropUstensile,
+  appareil,
+  ustensile
+) {
+  document.addEventListener("click", function (e) {
+    let cible = e.target;
+    if (
+      cible.id === "dropdownMenuIngredient" ||
+      cible.id === "dropdownMenuUstensile" ||
+      cible.id === "dropdownMenuAppareil"
+    ) {
+      if (cible.classList.contains("ingredient__button")) {
+        dropIngredient.classList.remove("hidde");
+        appareil.classList.add("move");
+        ustensile.classList.add("move");
+      }
+      if (cible.classList.contains("appareil__button")) {
+        dropAppareil.classList.remove("hidde");
+        ustensile.classList.add("move");
+      }
+      if (cible.classList.contains("ustensile__button")) {
+        dropUstensile.classList.remove("hidde");
+      }
+    }
+    if (cible.classList.contains("flecheOpen")) {
+      if (cible.classList.contains("flecheIngredient")) {
+        dropIngredient.classList.remove("hidde");
+        appareil.classList.add("move");
+        ustensile.classList.add("move");
+      }
+      if (cible.classList.contains("flecheAppareil")) {
+        dropAppareil.classList.remove("hidde");
+        ustensile.classList.add("move");
+      }
+      if (cible.classList.contains("flecheUstensile")) {
+        dropUstensile.classList.remove("hidde");
+      }
+    }
+  });
+};
 
-let ingredientsTrie = [];
-let appliancesTrie = [];
-let ustensilesTrie = [];
-
-const getAllIngredient = function (recipes) {
-  let allIngredients = [];
-  recipes.forEach((recipe) => {
-    recipe.ingredients.forEach((ingredient) => {
-      allIngredients.push(ingredient.ingredient);
+// permet de fermer les menus déroulant
+const closeList = function (e, bouttons) {
+  console.log(e.target);
+  if (
+    e.target.classList.contains("fleche") ||
+    !e.target.classList.contains("input")
+  ) {
+    document.querySelectorAll(".boutons").forEach((bouton) => {
+      if (!bouton.classList.contains("hidde")) {
+        bouton.classList.add("hidde");
+        bouttons.forEach((button) => {
+          button.classList.remove("move");
+        });
+      }
     });
-  });
-  ingredientsTrie = allIngredients.filter(function (ele, pos) {
-    return allIngredients.indexOf(ele) == pos;
-  });
+  }
 };
 
-const getAllAppliances = function (recipes) {
-  let allAppliances = [];
-  recipes.forEach((recipe) => {
-    allAppliances.push(recipe.appliance);
-  });
-  appliancesTrie = allAppliances.filter(function (ele, pos) {
-    return allAppliances.indexOf(ele) == pos;
-  });
-};
-
-const getAllUstensile = function (recipes) {
-  let allUstensils = [];
-  recipes.forEach((recipe) => {
-    recipe.ustensils.forEach((ustensil) => {
-      allUstensils.push(ustensil);
-    });
-  });
-  ustensilesTrie = allUstensils.filter(function (ele, pos) {
-    return allUstensils.indexOf(ele) == pos;
-  });
-};
-
-getAllIngredient(recipes);
-getAllAppliances(recipes);
-getAllUstensile(recipes);
-
-function getAllItems(recipes) {
-  getAllIngredient(recipes);
-  getAllAppliances(recipes);
-  getAllUstensile(recipes);
-}
-
-// class Dropdown {
-//   static initialisation() {
-//     // Récupère les inputs des dropdown
-//     let liens = document.querySelectorAll(".input");
-
-//     liens.forEach((lien) => {
-//       lien.addEventListener("click", function (e) {
-//         console.log(e.target);
-//       });
-//     });
-//   }
-
-//   constructor(recipes) {
-//     this.ingredients = recipes.ingredients;
-//     this.appliance = recipes.appliance;
-//     this.ustensils = recipes.ustensils;
-//   }
-
-//   liMaker() {}
-// }
-
-let ingredientsTrieLowerCase = [];
-ingredientsTrie.forEach((ingredient) => {
-  ingredientsTrieLowerCase.push(ingredient.toLowerCase());
-});
-
-console.log(ingredientsTrie, appliancesTrie, ustensilesTrie);
-export {
-  ingredientsTrie,
-  appliancesTrie,
-  ustensilesTrie,
-  getAllItems,
-  ingredientsTrieLowerCase,
-};
+export { openList, closeList };
