@@ -27,6 +27,7 @@ class Search {
         this.replace(nouvelleRecette.name).includes(
           this.replace(this.recherche)
         ) ||
+<<<<<<< HEAD
         this.replace(this.recherche)
           .split(" ")
           .filter(
@@ -36,6 +37,11 @@ class Search {
         nouvelleRecette.ustensils.filter((ustensil) => {
           return this.replace(ustensil).includes(this.replace(this.recherche));
         }).length !== 0
+=======
+        this.replace(nouvelleRecette.description).includes(
+          this.replace(this.recherche)
+        )
+>>>>>>> master
       );
     });
     return result;
