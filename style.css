@@ -42,7 +42,7 @@ header .img {
 }
 .searchInput::after {
   content: "";
-  background-image: url("../../images/search.svg");
+  background-image: url("./images/search.svg");
   display: flex;
   width: 2rem;
   height: 2rem;
@@ -260,7 +260,7 @@ header .img {
 }
 .tagSearch__ingredient__position::after {
   content: "";
-  background: url(../../images/delete.svg) no-repeat center;
+  background: url(./images/delete.svg) no-repeat center;
   position: absolute;
   height: 20px;
   width: 20px;
@@ -280,7 +280,7 @@ header .img {
 }
 .tagSearch__appareil__position::after {
   content: "";
-  background: url(../../images/delete.svg) no-repeat center;
+  background: url(./images/delete.svg) no-repeat center;
   position: absolute;
   height: 20px;
   width: 20px;
@@ -300,7 +300,7 @@ header .img {
 }
 .tagSearch__ustensile__position::after {
   content: "";
-  background: url(../../images/delete.svg) no-repeat center;
+  background: url(./images/delete.svg) no-repeat center;
   position: absolute;
   height: 20px;
   width: 20px;

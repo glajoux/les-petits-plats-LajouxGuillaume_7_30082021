@@ -33,9 +33,27 @@ class Search {
             (word) =>
               this.replace(nouvelleRecette.description).includes(word) === false
           ).length === 0 ||
-        nouvelleRecette.ustensils.filter((ustensil) => {
-          return this.replace(ustensil).includes(this.replace(this.recherche));
-        }).length !== 0
+        this.replace(nouvelleRecette.appliance).includes(
+          this.replace(this.recherche)
+        )
+
+        // ||
+        // nouvelleRecette.ustensils.filter((ustensil) => {
+        //   return this.replace(ustensil).includes(this.replace(this.recherche));
+        // }).length !== 0
+      );
+    });
+    return result;
+  }
+
+  searchTag() {
+    let nouvelleRecettes = this.liste;
+    const result = nouvelleRecettes.filter((nouvelleRecette) => {
+      return (
+        this.recherche
+          .split(" ")
+          .filter((word) => nouvelleRecette.includes(word) === false).length ===
+        0
       );
     });
     return result;

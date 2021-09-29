@@ -300,7 +300,10 @@ function searchByTag(elementClicked) {
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
-    let test = new Search(primeSearch, elementClicked).mainSearch();
+    console.log(arrayTags);
+    console.log(primeSearch);
+    console.log(arrayTags.join(" "));
+    let test = new Search(primeSearch, arrayTags.join(" ")).mainSearch();
     console.log(test);
 
     domAfterSearch(test, lis);
