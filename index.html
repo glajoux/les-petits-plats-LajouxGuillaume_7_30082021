@@ -22,7 +22,104 @@
       <h1>Les petits plats</h1>
     </header>
     <main>
-      <section id="searchSection"></section>
+      <section id="searchSection">
+        <div class="searchInput">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+            class="search"
+          />
+        </div>
+        <div id="tagSearch" class="tagSearch">
+          <div class="tagSearch__ingredient"></div>
+          <div class="tagSearch__appareil"></div>
+          <div class="tagSearch__ustensile"></div>
+        </div>
+
+        <div class="container">
+          <div class="dropdown dropdown__ingredient ingredient">
+            <div
+              class="dropdown__button ingredient__button"
+              role="button"
+              aria-expand="false"
+              id="dropdownMenuIngredient"
+            >
+              Ingrédients<img
+                src="./images/felche.svg"
+                alt=""
+                class="flecheOpen flecheIngredient"
+              />
+            </div>
+            <div
+              class="ingredient__search hidde boutons"
+              aria-labelledby="dropdownMenuIngredient"
+            >
+              <input
+                type="text"
+                placeholder="Recherche un ingrédient"
+                class="ingredient__search__input input"
+              />
+              <img src="./images/felche.svg" alt="" class="fleche" />
+              <ul class="ingredient__search__menu"></ul>
+            </div>
+          </div>
+
+          <div class="dropdown dropdown__appareil appareil">
+            <div
+              class="dropdown__button appareil__button"
+              role="button"
+              aria-expand="false"
+              id="dropdownMenuAppareil"
+            >
+              Appareil<img
+                src="./images/felche.svg"
+                alt=""
+                class="flecheOpen flecheAppareil"
+              />
+            </div>
+            <div
+              class="appareil__search hidde boutons"
+              aria-labelledby="dropdownMenuAppareil"
+            >
+              <input
+                type="text"
+                placeholder="Recherche un appareil"
+                class="appareil__search__input input"
+              />
+              <img src="./images/felche.svg" alt="" class="fleche" />
+              <ul class="appareil__search__menu"></ul>
+            </div>
+          </div>
+
+          <div class="dropdown dropdown__ustensile ustensile">
+            <div
+              class="dropdown__button ustensile__button"
+              role="button"
+              aria-expand="false"
+              id="dropdownMenuUstensile"
+            >
+              Ustensiles<img
+                src="./images/felche.svg"
+                alt=""
+                class="flecheOpen flecheUstensile"
+              />
+            </div>
+            <div
+              class="ustensile__search hidde boutons"
+              aria-labelledby="dropdownMenuUstensile"
+            >
+              <input
+                type="text"
+                placeholder="Recherche un ustensile"
+                class="ustensile__search__input input"
+              />
+              <img src="./images/felche.svg" alt="" class="fleche" />
+              <ul class="ustensile__search__menu"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="recipesList"></section>
     </main>

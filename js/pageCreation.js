@@ -1,76 +1,69 @@
-// Constante qui permet de créer les éléments de recherche sur le DOM
-const searchConstructor = function (dom, ingredients, appliances, utils) {
-  dom.innerHTML = `
-        <div class="searchInput">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
-            class="search"
-          />
-        </div>
-        <div id="tagSearch" class="tagSearch">
-          <div class="tagSearch__ingredient"></div>
-          <div class="tagSearch__appareil"></div>
-          <div class="tagSearch__ustensile"></div>
-        </div>
+class LiConstructor {
+  constructor(ingredients, appliances, ustensils) {
+    this.ingredients = ingredients;
+    this.appliances = appliances;
+    this.ustensils = ustensils;
+  }
 
-        <div class="container">
+  replace = function (element) {
+    return element
+      .toLowerCase()
+      .replace(/[àäâ]/g, "a")
+      .replace(/[ç]/g, "c")
+      .replace(/[éèêë]/g, "e")
+      .replace(/[îï]/g, "i")
+      .replace(/[ôö]/g, "o")
+      .replace(/[ùûû]/g, "u");
+  };
 
-          <div class="dropdown dropdown__ingredient ingredient">
-            <div class="dropdown__button ingredient__button" role="button" aria-expand="false" id="dropdownMenuIngredient">
-              Ingrédients<img src="./images/felche.svg" alt="" class="flecheOpen flecheIngredient"/>
-            </div>
-            <div class="ingredient__search hidde boutons" aria-labelledby="dropdownMenuIngredient">
-              <input type="text" placeholder="Recherche un ingrédient" class="ingredient__search__input input">
-              <img src="./images/felche.svg" alt="" class="fleche"/>
-              <ul class="ingredient__search__menu">
-                ${ingredients
-                  .map(
-                    (ingredient) =>
-                      `<li class="ingredientItems li">${ingredient}</li>`
-                  )
-                  .join("")}
-              </ul>
-            </div>
-          </div>
+  ingredientCreator() {
+    const ulIngredient = document.querySelector(".ingredient__search__menu");
+    return (ulIngredient.innerHTML = `
+      ${this.ingredients
+        .map(
+          (ingredient) =>
+            `<li class="ingredientItems li" data-value="${this.replace(
+              ingredient
+            )}">${ingredient}</li>`
+        )
+        .join("")}
+      `);
+  }
 
-          <div class="dropdown dropdown__appareil appareil">
-            <div class="dropdown__button appareil__button" role="button" aria-expand="false" id="dropdownMenuAppareil">
-              Appareil<img src="./images/felche.svg" alt="" class="flecheOpen flecheAppareil"/>
-            </div>
-            <div class="appareil__search hidde boutons" aria-labelledby="dropdownMenuAppareil">
-              <input type="text" placeholder="Recherche un appareil" class="appareil__search__input input">
-              <img src="./images/felche.svg" alt="" class="fleche"/>
-              <ul class="appareil__search__menu">
-                  ${appliances
-                    .map(
-                      (appliance) =>
-                        `<li class="appareilItems li">${appliance}</li>`
-                    )
-                    .join("")}
-                
-              </ul>
-            </div>
-          </div>
+  appareilCreator() {
+    const ulAppareil = document.querySelector(".appareil__search__menu");
+    return (ulAppareil.innerHTML = `
+         ${this.appliances
+           .map(
+             (appliance) =>
+               `<li class="appareilItems li" data-value="${this.replace(
+                 appliance
+               )}">${appliance}</li>`
+           )
+           .join("")}
+        `);
+  }
 
-          <div class="dropdown dropdown__ustensile ustensile">
-            <div class="dropdown__button ustensile__button" role="button" aria-expand="false" id="dropdownMenuUstensile">
-              Ustensiles<img src="./images/felche.svg" alt="" class="flecheOpen flecheUstensile"/>
-            </div>
-            <div class="ustensile__search hidde boutons" aria-labelledby="dropdownMenuUstensile">
-              <input type="text" placeholder="Recherche un ustensile" class="ustensile__search__input input">
-              <img src="./images/felche.svg" alt="" class="fleche"/>
-              <ul class="ustensile__search__menu">
-              ${utils
-                .map((util) => `<li class="ustensileItems li">${util}</li>`)
-                .join("")}
-              </ul>
-            </div>
-          </div>
+  ustensileCreator() {
+    const ulUstensile = document.querySelector(".ustensile__search__menu");
+    return (ulUstensile.innerHTML = `
+        ${this.ustensils
+          .map(
+            (ustensile) =>
+              `<li class="ustensileItems li" data-value="${this.replace(
+                ustensile
+              )}">${ustensile}</li>`
+          )
+          .join("")}
+      `);
+  }
 
-        </div>    `;
-};
+  liCreator() {
+    return (
+      this.ingredientCreator(), this.appareilCreator(), this.ustensileCreator()
+    );
+  }
+}
 
 // Classe qui permet de faire les vignettes des recettes sur le DOM
 class CreateArticle {
@@ -121,4 +114,4 @@ class CreateArticle {
   };
 }
 
-export { searchConstructor, CreateArticle };
+export { CreateArticle, LiConstructor };
