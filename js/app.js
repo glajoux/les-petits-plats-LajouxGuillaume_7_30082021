@@ -147,7 +147,6 @@ function positionTag(lis, tagIngre, tagApp, tagUst) {
       } else {
         let removeTag = arrayTags.indexOf(e.target.dataset.value);
         arrayTags.splice(removeTag);
-        console.log("test");
         searchAfterRemoveTag();
         if (e.target.classList.contains("ingredientItems")) {
           let tagIngre = document.querySelector(".tagSearch__ingredient");
@@ -296,6 +295,9 @@ function searchByTag(elementClicked) {
   } else if (!primeSearch && arrayTags.length > 0) {
     console.log(arrayTags.join(" "));
     console.log(arrayTags);
+    let test2 = new Search(recipes, arrayTags).itemSearch();
+    console.log(test2);
+
     let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
     console.log(test);
     domAfterSearch(test, lis);
