@@ -17,6 +17,10 @@ let primeSearch = false;
 
 // Variable qui va stocker les valeurs des différents tags affiché afin de permettre de faire une recherche croisé
 let arrayTags = [];
+// Variables qui vont stocker les tags des différents items
+let tagsIngredients = [];
+let tagsAppareils = [];
+let tagsUstensiles = [];
 
 let firstLi = new LiConstructor(
   ingredientsTrie,
@@ -95,10 +99,6 @@ const TAGAPPAREIL = document.querySelector(".tagSearch__appareil");
 const TAGUSTENSILE = document.querySelector(".tagSearch__ustensile");
 const TAGS = [TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE];
 
-//Récupère les inputs de recherche de chaque items
-let ulIngredient = document.querySelector(".ingredient__search__menu");
-let ulAppareil = document.querySelector(".appareil__search__menu");
-let ulUstensile = document.querySelector(".ustensile__search__menu");
 let lis = [];
 
 let INPUTSDROPDOWN = document.querySelectorAll(".input");
@@ -147,7 +147,8 @@ function positionTag(lis, tagIngre, tagApp, tagUst) {
       } else {
         let removeTag = arrayTags.indexOf(e.target.dataset.value);
         arrayTags.splice(removeTag);
-        searchByTag(e.target.dataset.value);
+        console.log("test");
+        searchAfterRemoveTag();
         if (e.target.classList.contains("ingredientItems")) {
           let tagIngre = document.querySelector(".tagSearch__ingredient");
           let tagsIn = document.querySelectorAll(
@@ -230,7 +231,6 @@ INPUTSDROPDOWN.forEach((input) => {
         ).ingredientCreator();
         lis = document.querySelectorAll(".li");
         positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
-        searchByTag(e.target.textContent);
       }
       if (e.target.classList.contains("appareil__search__input")) {
         let li = new LiConstructor(
@@ -295,14 +295,13 @@ function searchByTag(elementClicked) {
     domAfterSearch(test, lis);
   } else if (!primeSearch && arrayTags.length > 0) {
     console.log(arrayTags.join(" "));
-
+    console.log(arrayTags);
     let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
     let test = new Search(primeSearch, elementClicked).mainSearch();
     console.log(test);
-
     domAfterSearch(test, lis);
   }
 }
@@ -311,23 +310,19 @@ function searchAfterRemoveTag() {
   if (!primeSearch && arrayTags.length == 0) {
     let test = recipes;
     console.log(test);
-
     domAfterSearch(test, lis);
   } else if (!primeSearch && arrayTags.length > 0) {
     console.log(arrayTags.join(" "));
-
     let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
     let test = new Search(primeSearch, arrayTags.join(" ")).mainSearch();
     console.log(test);
-
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags == 0) {
     let test = primeSearch;
     console.log(test);
-
     domAfterSearch(test, lis);
   }
 }
