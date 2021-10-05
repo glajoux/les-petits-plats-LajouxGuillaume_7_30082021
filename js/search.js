@@ -113,7 +113,6 @@ class Search {
       nouvelleRecette.ustensils.forEach((ustensil) => {
         listeItemToTest.push(this.replace(ustensil));
       });
-
       if (typeof this.recherche === "string") {
         if (listeItemToTest.includes(this.recherche)) {
           newRecipes.push(nouvelleRecette);

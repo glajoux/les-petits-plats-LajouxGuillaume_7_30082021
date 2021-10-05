@@ -190,7 +190,9 @@ function closeTag() {
   let spanTags = document.querySelectorAll(".tagSearch span");
   spanTags.forEach((span) => {
     span.addEventListener("click", function (e) {
-      let removeTag = arrayTags.indexOf(e.target.dataset.value);
+      console.log(arrayTags);
+      let removeTag = arrayTags.indexOf(e.target.textContent);
+      console.log(removeTag);
       arrayTags.splice(removeTag);
       console.log(arrayTags);
 
@@ -289,20 +291,16 @@ INPUTSDROPDOWN.forEach((input) => {
 
 function searchByTag(elementClicked) {
   if (!primeSearch && arrayTags.length == 0) {
-    let test = new Search(recipes, elementClicked).mainSearch();
+    let test = new Search(recipes, elementClicked).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (!primeSearch && arrayTags.length > 0) {
-    console.log(arrayTags.join(" "));
     console.log(arrayTags);
-    let test2 = new Search(recipes, arrayTags).itemSearch();
-    console.log(test2);
-
-    let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
+    let test = new Search(recipes, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
-    let test = new Search(primeSearch, elementClicked).mainSearch();
+    let test = new Search(primeSearch, elementClicked).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   }
@@ -314,12 +312,11 @@ function searchAfterRemoveTag() {
     console.log(test);
     domAfterSearch(test, lis);
   } else if (!primeSearch && arrayTags.length > 0) {
-    console.log(arrayTags.join(" "));
-    let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
+    let test = new Search(recipes, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
-    let test = new Search(primeSearch, arrayTags.join(" ")).mainSearch();
+    let test = new Search(primeSearch, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags == 0) {
