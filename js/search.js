@@ -135,58 +135,6 @@ class Search {
     console.log(newRecipesSorting);
     return newRecipesSorting;
   };
-
-  // itemSearch = function () {
-  //   let nouvelleRecettes = this.liste;
-  //   let newRecipes = [];
-
-  //   nouvelleRecettes.forEach((nouvelleRecette) => {
-  //     let testIngre = false;
-  //     let testApp = false;
-  //     let testUst = false;
-  //     nouvelleRecette.ingredients.forEach((ingredient) => {
-  //       this.recherche.forEach((search) => {
-  //         if (ingredient.ingredient.includes(search)) {
-  //           testIngre = true;
-  //         }
-  //       });
-  //     });
-  //     this.recherche.forEach((search) => {
-  //       if (nouvelleRecette.appliance.includes(search)) {
-  //         testApp = true;
-  //       }
-  //     });
-  //     nouvelleRecette.ustensils.forEach((ustensil) => {
-  //       this.recherche.forEach((search) => {
-  //         if (ustensil.includes(search)) {
-  //           testUst = true;
-  //         }
-  //       });
-  //     });
-  //     if (testIngre && !(testApp && testUst)) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (testIngre && testApp && !testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (testIngre && !testApp && testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (testIngre && testApp && testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (!testIngre && testApp && !testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (!testIngre && testApp && testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (!testIngre && !testApp && testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else if (testIngre && !testApp && testUst) {
-  //       newRecipes.push(nouvelleRecette);
-  //     } else {
-  //     }
-  //   });
-
-  // let newRecipesSorting = Array.from(new Set(newRecipes));
-  // console.log(newRecipesSorting);
-  // return newRecipesSorting;
-  // };
 }
 
 function searchItem(tableau, recherche) {
