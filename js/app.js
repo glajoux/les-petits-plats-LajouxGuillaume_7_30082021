@@ -121,21 +121,21 @@ function positionTag(lis, tagIngre, tagApp, tagUst) {
           tagIngre.innerHTML += `
               <span class="tagSearch__ingredient__position" data-value="${e.target.dataset.value}">${e.target.textContent}</span>
               `;
-          searchByTag(e.target.dataset.value);
+          searchByTag();
           closeTag();
         }
         if (e.target.classList.contains("appareilItems")) {
           tagApp.innerHTML += `
               <span class="tagSearch__appareil__position" data-value="${e.target.dataset.value}">${e.target.textContent}</span>
               `;
-          searchByTag(e.target.dataset.value);
+          searchByTag();
           closeTag();
         }
         if (e.target.classList.contains("ustensileItems")) {
           tagUst.innerHTML += `
               <span class="tagSearch__ustensile__position" data-value="${e.target.dataset.value}">${e.target.textContent}</span>
               `;
-          searchByTag(e.target.dataset.value);
+          searchByTag();
           closeTag();
         }
       } else {
@@ -280,12 +280,7 @@ function lisMaker() {
   positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
 }
 
-function searchByTag(elementClicked) {
-  // if (!primeSearch && arrayTags.length == 0) {
-  //   let test = new Search(recipes, elementClicked).itemSearch();
-  //   console.log(test);
-  //   domAfterSearch(test, lis);
-  // } else
+function searchByTag() {
   if (!primeSearch && arrayTags.length > 0) {
     console.log(arrayTags);
     let test = new Search(recipes, arrayTags).itemSearch();
@@ -319,6 +314,7 @@ function searchAfterRemoveTag() {
   }
 }
 
+// Permet de refaire le DOM après une recherche par TAGS
 function domAfterSearch(test, lis) {
   ARTICLE.innerHTML = "";
   test.forEach((recipe) => {

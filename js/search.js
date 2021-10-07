@@ -41,66 +41,6 @@ class Search {
     return result;
   }
 
-  // Refacto de la première fonction de recherche
-  // mainSearch() {
-  //   let nouvelleRecettes = this.liste;
-  //   const result = nouvelleRecettes.filter((nouvelleRecette) => {
-  //     return (
-  //       nouvelleRecette.ingredients.some((ingredient) => {
-  //         this.replace(ingredient.ingredient).includes(this.recherche);
-  //       }) ||
-  //       this.replace(nouvelleRecette.name).includes(this.recherche) ||
-  //       this.replace(this.recherche)
-  //         .split(" ")
-  //         .every((word) => {
-  //           this.replace(nouvelleRecette.description).includes(word);
-  //         })
-  //     );
-  //   });
-  //   return result;
-  // }
-
-  // mainSearch() {
-  //   let nouvelleRecettes = this.liste;
-  //   let newRecipes = [];
-  //   nouvelleRecettes.forEach((nouvelleRecette) => {
-  //     const name = this.replace(nouvelleRecette.name);
-  //     const appliance = this.replace(nouvelleRecette.appliance);
-  //     const description = this.replace(nouvelleRecette.description);
-  //     const ustensils = nouvelleRecette.ustensils;
-  //     const ingredients = nouvelleRecette.ingredients;
-  //     if (
-  //       name.includes(this.recherche) ||
-  //       appliance.includes(this.recherche) ||
-  //       description.includes(this.recherche)
-  //     ) {
-  //       newRecipes.push(nouvelleRecette);
-  //     }
-  //     ustensils.forEach((ustensil) => {
-  //       const ust = this.replace(ustensil);
-  //       if (ust.includes(this.recherche)) {
-  //         newRecipes.push(nouvelleRecette);
-  //       }
-  //     });
-  //     ingredients.forEach((ingredient) => {
-  //       const ingre = this.replace(ingredient.ingredient);
-  //       if (ingre.includes(this.recherche)) {
-  //         newRecipes.push(nouvelleRecette);
-  //       }
-  //     });
-  //   });
-  //   let newRecipesSorting = Array.from(new Set(newRecipes));
-  //   console.log(newRecipesSorting);
-
-  //   return newRecipesSorting;
-  // }
-
-  // itemSearch = function () {
-  //   return this.liste.filter((element) =>
-  //     this.replace(element).includes(this.recherche)
-  //   );
-  // };
-
   itemSearch = function () {
     let nouvelleRecettes = this.liste;
     let newRecipes = [];
