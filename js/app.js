@@ -181,25 +181,22 @@ function positionTag(lis, tagIngre, tagApp, tagUst) {
 }
 
 function closeTag() {
+  // Selectionne tout les enfants des tags serach dans le DOM
   let spanTags = document.querySelectorAll(".tagSearch span");
   spanTags.forEach((span) => {
+    // Ajoute un event sur l'enfant pour pouvoir le supprimer
     span.addEventListener("click", function (e) {
-      console.log(arrayTags);
-      console.log(e.target.dataset.value);
-      let removeTag = arrayTags.indexOf(e.target.dataset.value);
-      console.log(removeTag);
-      console.log(arrayTags.splice(removeTag));
-      arrayTags.splice(removeTag, 1);
-      console.log(arrayTags);
-      if (e.target.classList.contains("tagSearch__ingredient__position")) {
-        document.querySelector(".tagSearch__ingredient").removeChild(e.target);
-      } else if (e.target.classList.contains("tagSearch__appareil__position")) {
-        document.querySelector(".tagSearch__appareil").removeChild(e.target);
-      } else if (
-        e.target.classList.contains("tagSearch__ustensile__position")
-      ) {
-        document.querySelector(".tagSearch__ustensile").removeChild(e.target);
-      } else {
+      console.log("dataset :", span.getAttribute("data-value"));
+      let removeTag = arrayTags.indexOf(span.getAttribute("data-value"));
+      if (removeTag !== -1) {
+        arrayTags.splice(removeTag, 1);
+        if (span.classList.contains("tagSearch__ingredient__position")) {
+          document.querySelector(".tagSearch__ingredient").removeChild(span);
+        } else if (span.classList.contains("tagSearch__appareil__position")) {
+          document.querySelector(".tagSearch__appareil").removeChild(span);
+        } else if (span.classList.contains("tagSearch__ustensile__position")) {
+          document.querySelector(".tagSearch__ustensile").removeChild(span);
+        }
       }
       searchAfterRemoveTag();
     });
