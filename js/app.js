@@ -17,10 +17,6 @@ let primeSearch = false;
 
 // Variable qui va stocker les valeurs des différents tags affiché afin de permettre de faire une recherche croisé
 let arrayTags = [];
-// Variables qui vont stocker les tags des différents items
-let tagsIngredients = [];
-let tagsAppareils = [];
-let tagsUstensiles = [];
 
 let firstLi = new LiConstructor(
   ingredientsTrie,
@@ -63,8 +59,7 @@ SEARCHINPUT.addEventListener("keyup", function (e) {
       ustensilesTrie
     );
     newLi.liCreator();
-    lis = document.querySelectorAll(".li");
-    positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+    lisMaker();
   } else {
     ARTICLE.innerHTML = "";
     primeSearch = false;
@@ -79,8 +74,7 @@ SEARCHINPUT.addEventListener("keyup", function (e) {
       ustensilesTrie
     );
     newLi.liCreator();
-    lis = document.querySelectorAll(".li");
-    positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+    lisMaker();
   }
 });
 
@@ -99,10 +93,10 @@ const TAGAPPAREIL = document.querySelector(".tagSearch__appareil");
 const TAGUSTENSILE = document.querySelector(".tagSearch__ustensile");
 const TAGS = [TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE];
 
+//Récupère tout les "li" compris dans chaque items
 let lis = [];
 
 let INPUTSDROPDOWN = document.querySelectorAll(".input");
-const CONTAINERSEARCH = document.querySelector(".container");
 
 document.addEventListener("click", function (e) {
   closeList(e, BUTTONS);
@@ -125,29 +119,28 @@ function positionTag(lis, tagIngre, tagApp, tagUst) {
         console.log(arrayTags);
         if (e.target.classList.contains("ingredientItems")) {
           tagIngre.innerHTML += `
-              <span class="tagSearch__ingredient__position">${e.target.textContent}</span>
+              <span class="tagSearch__ingredient__position" data-value="${e.target.dataset.value}">${e.target.textContent}</span>
               `;
-          searchByTag(e.target.dataset.value);
+          searchByTag();
           closeTag();
         }
         if (e.target.classList.contains("appareilItems")) {
           tagApp.innerHTML += `
-              <span class="tagSearch__appareil__position">${e.target.textContent}</span>
+              <span class="tagSearch__appareil__position" data-value="${e.target.dataset.value}">${e.target.textContent}</span>
               `;
-          searchByTag(e.target.dataset.value);
+          searchByTag();
           closeTag();
         }
         if (e.target.classList.contains("ustensileItems")) {
           tagUst.innerHTML += `
-              <span class="tagSearch__ustensile__position">${e.target.textContent}</span>
+              <span class="tagSearch__ustensile__position" data-value="${e.target.dataset.value}">${e.target.textContent}</span>
               `;
-          searchByTag(e.target.dataset.value);
+          searchByTag();
           closeTag();
         }
       } else {
         let removeTag = arrayTags.indexOf(e.target.dataset.value);
         arrayTags.splice(removeTag);
-        console.log("test");
         searchAfterRemoveTag();
         if (e.target.classList.contains("ingredientItems")) {
           let tagIngre = document.querySelector(".tagSearch__ingredient");
@@ -188,22 +181,22 @@ function positionTag(lis, tagIngre, tagApp, tagUst) {
 }
 
 function closeTag() {
+  // Selectionne tout les enfants des tags serach dans le DOM
   let spanTags = document.querySelectorAll(".tagSearch span");
   spanTags.forEach((span) => {
+    // Ajoute un event sur l'enfant pour pouvoir le supprimer
     span.addEventListener("click", function (e) {
-      let removeTag = arrayTags.indexOf(e.target.dataset.value);
-      arrayTags.splice(removeTag);
-      console.log(arrayTags);
-
-      if (e.target.classList.contains("tagSearch__ingredient__position")) {
-        document.querySelector(".tagSearch__ingredient").removeChild(e.target);
-      } else if (e.target.classList.contains("tagSearch__appareil__position")) {
-        document.querySelector(".tagSearch__appareil").removeChild(e.target);
-      } else if (
-        e.target.classList.contains("tagSearch__ustensile__position")
-      ) {
-        document.querySelector(".tagSearch__ustensile").removeChild(e.target);
-      } else {
+      console.log("dataset :", span.getAttribute("data-value"));
+      let removeTag = arrayTags.indexOf(span.getAttribute("data-value"));
+      if (removeTag !== -1) {
+        arrayTags.splice(removeTag, 1);
+        if (span.classList.contains("tagSearch__ingredient__position")) {
+          document.querySelector(".tagSearch__ingredient").removeChild(span);
+        } else if (span.classList.contains("tagSearch__appareil__position")) {
+          document.querySelector(".tagSearch__appareil").removeChild(span);
+        } else if (span.classList.contains("tagSearch__ustensile__position")) {
+          document.querySelector(".tagSearch__ustensile").removeChild(span);
+        }
       }
       searchAfterRemoveTag();
     });
@@ -229,8 +222,7 @@ INPUTSDROPDOWN.forEach((input) => {
           appliancesSorting,
           ustensilssSorting
         ).ingredientCreator();
-        lis = document.querySelectorAll(".li");
-        positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+        lisMaker();
       }
       if (e.target.classList.contains("appareil__search__input")) {
         let li = new LiConstructor(
@@ -238,8 +230,7 @@ INPUTSDROPDOWN.forEach((input) => {
           appliancesSorting,
           ustensilssSorting
         ).appareilCreator();
-        lis = document.querySelectorAll(".li");
-        positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+        lisMaker();
       }
       if (e.target.classList.contains("ustensile__search__input")) {
         let li = new LiConstructor(
@@ -247,8 +238,7 @@ INPUTSDROPDOWN.forEach((input) => {
           appliancesSorting,
           ustensilssSorting
         ).ustensileCreator();
-        lis = document.querySelectorAll(".li");
-        positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+        lisMaker();
       }
     } else {
       console.log(primeSearch);
@@ -263,8 +253,7 @@ INPUTSDROPDOWN.forEach((input) => {
           appliancesSorting,
           ustensilssSorting
         ).ingredientCreator();
-        lis = document.querySelectorAll(".li");
-        positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+        lisMaker();
       }
       if (e.target.classList.contains("appareil__search__input")) {
         let li = new LiConstructor(
@@ -272,8 +261,7 @@ INPUTSDROPDOWN.forEach((input) => {
           appliancesSorting,
           ustensilssSorting
         ).appareilCreator();
-        lis = document.querySelectorAll(".li");
-        positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+        lisMaker();
       }
       if (e.target.classList.contains("ustensile__search__input")) {
         let li = new LiConstructor(
@@ -281,26 +269,25 @@ INPUTSDROPDOWN.forEach((input) => {
           appliancesSorting,
           ustensilssSorting
         ).ustensileCreator();
-        lis = document.querySelectorAll(".li");
-        positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+        lisMaker();
       }
     }
   });
 });
 
-function searchByTag(elementClicked) {
-  if (!primeSearch && arrayTags.length == 0) {
-    let test = new Search(recipes, elementClicked).mainSearch();
-    console.log(test);
-    domAfterSearch(test, lis);
-  } else if (!primeSearch && arrayTags.length > 0) {
-    console.log(arrayTags.join(" "));
+function lisMaker() {
+  lis = document.querySelectorAll(".li");
+  positionTag(lis, TAGINGREDIENT, TAGAPPAREIL, TAGUSTENSILE);
+}
+
+function searchByTag() {
+  if (!primeSearch && arrayTags.length > 0) {
     console.log(arrayTags);
-    let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
+    let test = new Search(recipes, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
-    let test = new Search(primeSearch, elementClicked).mainSearch();
+    let test = new Search(primeSearch, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   }
@@ -312,21 +299,22 @@ function searchAfterRemoveTag() {
     console.log(test);
     domAfterSearch(test, lis);
   } else if (!primeSearch && arrayTags.length > 0) {
-    console.log(arrayTags.join(" "));
-    let test = new Search(recipes, arrayTags.join(" ")).mainSearch();
+    console.log(arrayTags);
+    let test = new Search(recipes, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
   } else if (primeSearch && arrayTags.length > 0) {
-    let test = new Search(primeSearch, arrayTags.join(" ")).mainSearch();
+    let test = new Search(primeSearch, arrayTags).itemSearch();
     console.log(test);
     domAfterSearch(test, lis);
-  } else if (primeSearch && arrayTags == 0) {
+  } else if (primeSearch && arrayTags.length == 0) {
     let test = primeSearch;
     console.log(test);
     domAfterSearch(test, lis);
   }
 }
 
+// Permet de refaire le DOM après une recherche par TAGS
 function domAfterSearch(test, lis) {
   ARTICLE.innerHTML = "";
   test.forEach((recipe) => {

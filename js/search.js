@@ -53,50 +53,33 @@ class Search {
   itemSearch = function () {
     let nouvelleRecettes = this.liste;
     let newRecipes = [];
-
     nouvelleRecettes.forEach((nouvelleRecette) => {
-      let testIngre = false;
-      let testApp = false;
-      let testUst = false;
+      let listeItemToTest = [];
       nouvelleRecette.ingredients.forEach((ingredient) => {
-        this.recherche.forEach((search) => {
-          if (ingredient.ingredient.includes(search)) {
-            testIngre = true;
-          }
-        });
+        listeItemToTest.push(this.replace(ingredient.ingredient));
       });
-      this.recherche.forEach((search) => {
-        if (nouvelleRecette.appliance.includes(search)) {
-          testApp = true;
-        }
-      });
+      listeItemToTest.push(this.replace(nouvelleRecette.appliance));
       nouvelleRecette.ustensils.forEach((ustensil) => {
-        this.recherche.forEach((search) => {
-          if (ustensil.includes(search)) {
-            testUst = true;
+        listeItemToTest.push(this.replace(ustensil));
+      });
+      if (typeof this.recherche === "string") {
+        if (listeItemToTest.includes(this.recherche)) {
+          newRecipes.push(nouvelleRecette);
+        }
+      } else {
+        let varToTest = [];
+        this.recherche.forEach((element) => {
+          if (listeItemToTest.includes(element)) {
+            varToTest.push(true);
+          } else {
+            varToTest.push(false);
           }
         });
-      });
-      if (testIngre && !(testApp && testUst)) {
-        newRecipes.push(nouvelleRecette);
-      } else if (testIngre && testApp && !testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else if (testIngre && !testApp && testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else if (testIngre && testApp && testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else if (!testIngre && testApp && !testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else if (!testIngre && testApp && testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else if (!testIngre && !testApp && testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else if (testIngre && !testApp && testUst) {
-        newRecipes.push(nouvelleRecette);
-      } else {
+        if (varToTest.every((test) => test === true)) {
+          newRecipes.push(nouvelleRecette);
+        }
       }
     });
-
     let newRecipesSorting = Array.from(new Set(newRecipes));
     console.log(newRecipesSorting);
     return newRecipesSorting;
